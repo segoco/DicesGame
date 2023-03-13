@@ -12,13 +12,17 @@ function f5(doc){
      }
      doc.getElementById("image1").src="images/dice"+numPlayer1+".png";
      doc.getElementById("image2").src="images/dice"+numPlayer2+".png";
+     sessionStorage.setItem("reloading", "true");
  }
- window.addEventListener("load",(Event)=> f5(this.document));
 
-//  window.onload = function() {
-//     var reloading = sessionStorage.getItem("reloading");
-//     if (reloading) {
-//         sessionStorage.removeItem("reloading");
-//         f5(this.document);
-//     }
-// }
+ function onLoad(){
+    console.log("entro OnLoad");
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        f5(this.document);
+    }
+    sessionStorage.setItem("reloading", "true");
+ }
+
+ window.addEventListener("load",(Event)=> onLoad());
+
